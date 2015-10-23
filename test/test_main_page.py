@@ -13,17 +13,29 @@ options.parse_config_file(os.path.join('test', 'config.py'))
 
 
 class TestHandlerBase(AsyncHTTPTestCase):
+    """TestCase with initialized app"""
 
     def get_app(self):
         return APP      # this is the global app that we created above.
 
 
-class TestDevWorkerMainPage(TestHandlerBase):
+class TestTodoTxtWebMainPage(TestHandlerBase):
 
-    def test_main_page(self):
+    def setUp(self):
+        super(TestHandlerBase, self).setUp()
+        """Fetch main page to self.page"""
         response = self.fetch('/')
         self.assertEqual(response.code, 200)
-        page = response.buffer.read()
-        self.assertIn('todo.txt', page)
+        self.page = response.buffer.read()
+
+    def test_main_page(self):
+        self.assertIn('todo.txt', self.page)
+
+
+    def test_includes(self):
+        """Testing including js/css"""
+        self.assertIn('material.min.css', self.page)
+        self.assertIn('material.min.js', self.page)
+        self.assertIn('icon.css', self.page)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
