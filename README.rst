@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/LLluma/todotxt_web.svg
+    :target: https://travis-ci.org/LLluma/todotxt_web
+
 todotxt_web
 ===========
 
