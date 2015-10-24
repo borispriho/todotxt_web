@@ -22,15 +22,15 @@ class TestHandlerBase(AsyncHTTPTestCase):
 class TestTodoTxtWebMainPage(TestHandlerBase):
 
     def setUp(self):
-        super(TestHandlerBase, self).setUp()
         """Fetch main page to self.page"""
+        super(TestTodoTxtWebMainPage, self).setUp()
         response = self.fetch('/')
         self.assertEqual(response.code, 200)
         self.page = response.buffer.read()
 
     def test_main_page(self):
+        """Test fetching main page"""
         self.assertIn('todo.txt', self.page)
-
 
     def test_includes(self):
         """Testing including js/css"""
@@ -39,5 +39,12 @@ class TestTodoTxtWebMainPage(TestHandlerBase):
         self.assertIn('icon.css', self.page)
         self.assertIn('viewport', self.page)
         self.assertIn('main.css', self.page)
+        self.assertIn('jquery.js', self.page)
+        self.assertIn('underscore.js', self.page)
+        self.assertIn('json2.js', self.page)
+        self.assertIn('backbone.js', self.page)
+        self.assertIn('backbone.babysitter.js', self.page)
+        self.assertIn('backbone.wreqr.js', self.page)
+        self.assertIn('backbone.marionette.min.js', self.page)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
