@@ -37,5 +37,7 @@ class TestTodoTxtWebMainPage(TestHandlerBase):
         self.assertIn('material.min.css', self.page)
         self.assertIn('material.min.js', self.page)
         self.assertIn('icon.css', self.page)
+        self.assertIn('viewport', self.page)
+        self.assertIn('main.css', self.page)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

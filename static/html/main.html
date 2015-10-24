@@ -2,15 +2,56 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>todo.txt</title>
 
     <link rel="stylesheet" href="static/lib/mdl/material.min.css">
     <script src="static/lib/mdl/material.min.js"></script>
     <link rel="stylesheet" href="static/lib/mdl/icon.css">
+    <link rel="stylesheet" href="static/css/main.css">
     
 </head>
 <body>
-    todo.txt
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout-icon"></div>
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">todo.txt</span>
+                <div class="mdl-layout-spacer">
+                    <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link" href="#">Nav link 1</a>
+                        <a class="mdl-navigation__link" href="#">Nav link 2</a>
+                        <a class="mdl-navigation__link" href="#">Nav link 3</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">todo.txt</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="#">Nav link 2</a>
+                <a class="mdl-navigation__link" href="#">Nav link 2</a>
+                <a class="mdl-navigation__link" href="#">Nav link 3</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable">
+                <thead>
+                    <th class="mdl-data-table__cell--non-numeric">Tasks</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            (A) Sample task @home @work
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="js-add-button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                <i class="material-icons">add</i>
+            </button>
+        </main>
+    </div>
 </body>
 </html>
