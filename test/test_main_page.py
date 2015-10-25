@@ -46,5 +46,6 @@ class TestTodoTxtWebMainPage(TestHandlerBase):
         self.assertIn('backbone.babysitter.js', self.page)
         self.assertIn('backbone.wreqr.js', self.page)
         self.assertIn('backbone.marionette.min.js', self.page)
+        self.assertIn('todo_txt.js', self.page)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -5,3 +5,11 @@
     margin-bottom: 20px;
     margin-right: 20px;
 }
+
+.todotxt__grid {
+    max-width: 800px;
+}
+
+.todotxt__list {
+    width: 100%;
+}

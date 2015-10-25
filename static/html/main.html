@@ -15,50 +15,39 @@
     <script src="static/lib/marionette/backbone.babysitter.js"></script>
     <script src="static/lib/marionette/backbone.wreqr.js"></script>
     <script src="static/lib/marionette/backbone.marionette.min.js"></script>
+    <script src="static/js/todo_txt.js"></script>
     <link rel="stylesheet" href="static/lib/mdl/icon.css">
     <link rel="stylesheet" href="static/css/main.css">
     
 </head>
 <body>
-    <div class="mdl-layout mdl-js-layout">
+    <div class="todotxt mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
-            <div class="mdl-layout-icon"></div>
             <div class="mdl-layout__header-row">
                 <span class="mdl-layout-title">todo.txt</span>
-                <div class="mdl-layout-spacer">
-                    <nav class="mdl-navigation">
-                        <a class="mdl-navigation__link" href="#">Nav link 1</a>
-                        <a class="mdl-navigation__link" href="#">Nav link 2</a>
-                        <a class="mdl-navigation__link" href="#">Nav link 3</a>
-                    </nav>
-                </div>
             </div>
         </header>
-        <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">todo.txt</span>
-            <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="#">Nav link 2</a>
-                <a class="mdl-navigation__link" href="#">Nav link 2</a>
-                <a class="mdl-navigation__link" href="#">Nav link 3</a>
-            </nav>
-        </div>
         <main class="mdl-layout__content">
-            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable">
-                <thead>
-                    <th class="mdl-data-table__cell--non-numeric">Tasks</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="mdl-data-table__cell--non-numeric">
-                            (A) Sample task @home @work
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div id="content" class="todotxt__grid mdl-grid">
+            </div>
             <button class="js-add-button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                 <i class="material-icons">add</i>
             </button>
         </main>
     </div>
+    <script id="todo-list" type="text/template">
+    <thead>
+        <tr>
+            <th class="mdl-data-table__cell--non-numeric">Tasks</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    </script>
+    <script id="todo-item" type="text/template">
+        <td class="mdl-data-table__cell--non-numeric">
+            <%= text %>
+        </td>
+    </script>
 </body>
 </html>
