@@ -58,4 +58,26 @@ class TodoTxt(object):
             for line in todo_fh:
                 yield line
 
+    @staticmethod
+    def serialize_line(line):
+        """Converting text line to representing dictioanary"""
+        result = {'projects': [], 'contexts': [], 'done': False}
+        line = line.strip()
+        if line.startswith('x '):
+            line = line[2:].strip()
+            result['done'] = True
+        clean_line = ''
+        for word in line.split(' '):
+            if not word:
+                continue
+            if word.startswith('+'):
+                result['projects'].append(word)
+                continue
+            if word.startswith('@'):
+                result['contexts'].append(word)
+                continue
+            clean_line += word
+        result.update({'line': clean_line})
+        return result
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

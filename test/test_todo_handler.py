@@ -12,7 +12,6 @@ APP = server.make_app()
 options.parse_config_file(os.path.join('test', 'config.py'))
 
 
-
 class TestHandlerBase(AsyncHTTPTestCase):
     """TestCase with initialized app"""
 
@@ -23,7 +22,7 @@ class TestHandlerBase(AsyncHTTPTestCase):
 class TestTodoHandler(TestHandlerBase):
 
     def setUp(self):
-        super(TestHandlerBase, self).setUp()
+        super(TestTodoHandler, self).setUp()
         with open(options.todo_file, 'w') as todo_fh:
             todo_fh.write('The first task\n')
             todo_fh.write('The second task\n')
@@ -33,14 +32,10 @@ class TestTodoHandler(TestHandlerBase):
         if os.path.exists(options.todo_file):
             os.remove(options.todo_file)
 
-
     def test_todo_handler_get(self):
         response = self.fetch('/todo/')
         self.assertEqual(response.code, 200)
         self.assertIn('The first task', response.body)
 
-    # def test_get(self):
-        # """Test fetching main page"""
-        # self.assertIn('todo.txt', self.page)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
