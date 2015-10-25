@@ -15,8 +15,11 @@ MAX_WORKERS = 4
 
 from functools import wraps
 
+import todo_txt
+
 define("port", default="8880", help="Worker port number")
 define("config", help="Config file name", default="default_config.py")
+define("todo_file", help="todo.txt file path")
 
 
 def method_proxy(f):
@@ -68,14 +71,14 @@ class MainHandler(RequestHandler):
 
 class TodoHandler(RequestHandler):
 
+    def initialize(self):
+        self.todo = todo_txt.TodoTxt(options.todo_file)
+
     def get(self):
-        result = [
-            {'line': 'Some line 1'},
-            {'line': 'Some line 2'},
-            {'line': 'Some line 3'},
-        ]
+        result = []
+        for line in self.todo:
+            result.append({'line': line})
         result_encoded = json_encode(result)
-        print result_encoded
         self.write(result_encoded)
 
 def make_app():

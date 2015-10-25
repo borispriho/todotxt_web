@@ -60,4 +60,9 @@ class TestTodoTxt(unittest.TestCase):
             self.assertIn(record2, todo_fh.read(),
                           msg="The second record does not exist in todo.txt file")
 
+    def test_iter_todo(self):
+        """Test __iter__ of todo object"""
+        for line in self.todo:
+            self.assertIsInstance(line, basestring)
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

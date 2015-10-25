@@ -53,4 +53,9 @@ class TodoTxt(object):
                     continue
                 todo_fh.write(line)
 
+    def __iter__(self):
+        with open(self.file_name) as todo_fh:
+            for line in todo_fh:
+                yield line
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
