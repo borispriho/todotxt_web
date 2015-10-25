@@ -1,2 +1,2 @@
 port = '88800'
-todo_file = 'test_todo.txt'
+todo_file = 'test/test_todo.txt'
