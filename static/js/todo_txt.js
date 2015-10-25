@@ -11,6 +11,7 @@ TodoTxtApp.TodoModel = Backbone.Model.extend({
 });
 
 TodoTxtApp.TodoCollection = Backbone.Collection.extend({
+    url: '/todo/',
     model: TodoTxtApp.TodoModel
 });
 
@@ -30,10 +31,8 @@ TodoTxtApp.TodoCompositeView = Backbone.Marionette.CompositeView.extend({
 });
 
 TodoTxtApp.addInitializer(function() {
-    var todo_collection = new TodoTxtApp.TodoCollection([
-        {text: "Some generated todo"},
-        {text: "Some generated todo"}
-    ]);
+    var todo_collection = new TodoTxtApp.TodoCollection();
+    todo_collection.fetch();
     var todo_view = new TodoTxtApp.TodoCompositeView({collection: todo_collection});
     this.contentRegion.show(todo_view);
 });
