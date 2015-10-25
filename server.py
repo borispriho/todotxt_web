@@ -63,16 +63,26 @@ class RequestHandlerProxy(RequestHandler):
 
 class MainHandler(RequestHandler):
 
-    def initialize(self):
-        pass
-
     def get(self):
         self.render('main.html')
+
+class TodoHandler(RequestHandler):
+
+    def get(self):
+        result = [
+            {'line': 'Some line 1'},
+            {'line': 'Some line 2'},
+            {'line': 'Some line 3'},
+        ]
+        result_encoded = json_encode(result)
+        print result_encoded
+        self.write(result_encoded)
 
 def make_app():
     return Application(
         [
             url(r"/", MainHandler),
+            url(r"/todo/", TodoHandler),
         ],
         template_path=os.path.join('static', 'html'),
         static_path=os.path.join('static'),

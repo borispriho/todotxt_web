@@ -6,7 +6,12 @@ TodoTxtApp.addRegions({
 
 TodoTxtApp.TodoModel = Backbone.Model.extend({
     defaults: {
-        text: ''
+        line: ''
+    },
+    toJSON: function() {
+        var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
+        json.cid = this.cid;
+        return json;
     }
 });
 
@@ -18,7 +23,11 @@ TodoTxtApp.TodoCollection = Backbone.Collection.extend({
 TodoTxtApp.TodoItemView = Backbone.Marionette.ItemView.extend({
     template: '#todo-item',
     model: TodoTxtApp.TodoModel,
-    tagName: 'tr'
+    tagName: 'tr',
+    className: 'todotxt__item',
+    onRender: function() {
+        componentHandler.upgradeElements(this.el);
+    }
 });
 
 TodoTxtApp.TodoCompositeView = Backbone.Marionette.CompositeView.extend({
@@ -27,7 +36,7 @@ TodoTxtApp.TodoCompositeView = Backbone.Marionette.CompositeView.extend({
     collection: TodoTxtApp.TodoCollection,
     childView: TodoTxtApp.TodoItemView,
     childViewContainer: 'tbody',
-    className: "todotxt__list mdl-data-table mdl-js-data-table mdl-data-table--selectable"
+    className: "todotxt__list mdl-data-table mdl-js-data-table"
 });
 
 TodoTxtApp.addInitializer(function() {

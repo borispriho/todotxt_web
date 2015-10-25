@@ -13,3 +13,7 @@
 .todotxt__list {
     width: 100%;
 }
+
+.todotxt__item td:first-child {
+    width: 1%;
+}

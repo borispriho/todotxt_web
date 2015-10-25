@@ -38,6 +38,7 @@
     <script id="todo-list" type="text/template">
     <thead>
         <tr>
+            <th></th>
             <th class="mdl-data-table__cell--non-numeric">Tasks</th>
         </tr>
     </thead>
@@ -46,7 +47,12 @@
     </script>
     <script id="todo-item" type="text/template">
         <td class="mdl-data-table__cell--non-numeric">
-            <%= text %>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="row_<%= cid %>">
+                <input type="checkbox" id="row_<%= cid %>" class="mdl-checkbox__input" />
+            </label>
+        </td>
+        <td class="mdl-data-table__cell--non-numeric">
+            <%= line %>
         </td>
     </script>
 </body>
