@@ -1,4 +1,4 @@
 The 1st task in todo +project
-Another task +project @home
+x Another task +project @home
 Yet another task @work
-Hi World
+x Hi World

@@ -6,7 +6,8 @@ TodoTxtApp.addRegions({
 
 TodoTxtApp.TodoModel = Backbone.Model.extend({
     defaults: {
-        line: ''
+        line: '',
+        done: false
     },
     toJSON: function() {
         var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
@@ -25,8 +26,22 @@ TodoTxtApp.TodoItemView = Backbone.Marionette.ItemView.extend({
     model: TodoTxtApp.TodoModel,
     tagName: 'tr',
     className: 'todotxt__item',
+    ui: {
+        checkbox: '.js-checkbox'
+    },
+    events: {
+        'change .js-checkbox': "recordTicked"
+    },
+    recordTicked: function(e) {
+        var done = this.ui.checkbox.hasClass('is-checked');
+        this.model.set('done', done);
+        this.$el.toggleClass('js-done');
+    },
     onRender: function() {
         componentHandler.upgradeElements(this.el);
+        if (this.model.get('done')) {
+            this.$el.addClass('js-done');
+        }
     }
 });
 

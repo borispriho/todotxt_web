@@ -17,3 +17,15 @@
 .todotxt__item td:first-child {
     width: 1%;
 }
+
+.todotxt__item.js-done {
+    text-decoration: line-through !important;
+}
+
+.todotxt__item .project {
+    color: #de3226;
+}
+
+.todotxt__item .context {
+    color: #4caf50;
+}

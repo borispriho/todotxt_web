@@ -42,12 +42,16 @@
     </script>
     <script id="todo-item" type="text/template">
         <td class="mdl-data-table__cell--non-numeric">
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="row_<%= cid %>">
-                <input type="checkbox" id="row_<%= cid %>" class="mdl-checkbox__input" />
+            <label class="js-checkbox mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="row_<%= cid %>">
+                <input type="checkbox" id="row_<%= cid %>" class="mdl-checkbox__input"
+                <% if(done) {print('checked');} %>
+                />
             </label>
         </td>
         <td class="mdl-data-table__cell--non-numeric">
             <%= line %>
+            <span class="project"><% _.each(projects, function(project) {print(' ' + project)}); %></span>
+            <span class="context"><% _.each(contexts, function(context) {print(' ' + context)}); %></span>
         </td>
     </script>
 </body>
