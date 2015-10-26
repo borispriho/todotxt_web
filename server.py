@@ -75,10 +75,7 @@ class TodoHandler(RequestHandler):
         self.todo = todo_txt.TodoTxt(options.todo_file)
 
     def get(self):
-        result = []
-        for line in self.todo:
-            result.append({'line': line})
-        result_encoded = json_encode(result)
+        result_encoded = json_encode(self.todo.serialize())
         self.write(result_encoded)
 
 def make_app():

@@ -83,4 +83,13 @@ class TestTodoTxt(unittest.TestCase):
         self.assertEqual(len(self.todo.serialize_line(line +
                                                       ' @home @work')['contexts']), 2)
 
+    def test_serialize(self):
+        """Test serialize todo object"""
+        self.todo.add("The record 1")
+        self.todo.add("The record 2")
+        serialized_todo = self.todo.serialize()
+        self.assertIsInstance(serialized_todo, list)
+        first_line = serialized_todo[0]
+        self.assertIsInstance(first_line, dict)
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

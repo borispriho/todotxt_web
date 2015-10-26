@@ -76,8 +76,18 @@ class TodoTxt(object):
             if word.startswith('@'):
                 result['contexts'].append(word)
                 continue
-            clean_line += word
+            clean_line += ' ' + word
         result.update({'line': clean_line})
+        return result
+
+    def serialize(self):
+        """Return serialized todo
+        Method returns list of dictionaries which represent todolist
+        """
+        result = []
+        for line in self:
+            print line
+            result.append(self.serialize_line(line))
         return result
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
