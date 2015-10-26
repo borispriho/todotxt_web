@@ -92,4 +92,21 @@ class TestTodoTxt(unittest.TestCase):
         first_line = serialized_todo[0]
         self.assertIsInstance(first_line, dict)
 
+    def test_unserialize_line(self):
+        line_dict = {'done': True, 'line': 'Text of line',
+                     'contexts': ['@home', '@work'], 'projects': ['+project_1']}
+        self.assertEqual("x Text of line +project_1 @home @work",
+                         self.todo.unserialize_line(line_dict))
+        line_dict = {'done': False, 'line': 'Text of line 2', 'projects': ['+project_1']}
+        self.assertEqual("Text of line 2 +project_1", self.todo.unserialize_line(line_dict))
+
+    def test_unserialize(self):
+        todo_list = [
+            {'done': True, 'line': 'Text of line',
+             'contexts': ['@home', '@work'], 'projects': ['+project_1']},
+            {'done': False, 'line': 'Text of line 2', 'contexts': [], 'projects': []}
+        ]
+        self.todo.unserialize(todo_list)
+        self.assertIn("x Text of line +project_1 @home @work\n", [line for line in self.todo])
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -86,8 +86,27 @@ class TodoTxt(object):
         """
         result = []
         for line in self:
-            print line
             result.append(self.serialize_line(line))
         return result
+
+    @staticmethod
+    def unserialize_line(line_dict):
+        """Convert representing dictionary to text line"""
+        result = ''
+        if line_dict.get('done'):
+            result += 'x '
+        result += line_dict.get('line', '')
+        for project in line_dict.get('projects', []):
+            result += ' ' + project
+        for context in line_dict.get('contexts', []):
+            result += ' ' + context
+        return result
+
+    def unserialize(self, todo_list):
+        """Convert representing list of dictionary to text and save"""
+        with self._get_handlers() as (todo_fh, backup_fh):
+            for line_dict in todo_list:
+                todo_fh.write(self.unserialize_line(line_dict) + "\n")
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
