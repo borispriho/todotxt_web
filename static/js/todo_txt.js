@@ -51,14 +51,28 @@ TodoTxtApp.TodoCompositeView = Backbone.Marionette.CompositeView.extend({
     collection: TodoTxtApp.TodoCollection,
     childView: TodoTxtApp.TodoItemView,
     childViewContainer: 'tbody',
-    className: "todotxt__list mdl-data-table mdl-js-data-table"
+    className: "todotxt__list mdl-data-table mdl-js-data-table",
+    initialize: function(options) {
+        var self = this;
+        TodoTxtApp.vent.on('todo:save', function(e) {
+            self.saveTodo(e);
+        });
+    },
+    saveTodo: function(e) {
+        var self = this;
+        self.collection.sync('create', self.collection);
+    }
 });
 
 TodoTxtApp.addInitializer(function() {
+    var self = this;
     var todo_collection = new TodoTxtApp.TodoCollection();
     todo_collection.fetch();
     var todo_view = new TodoTxtApp.TodoCompositeView({collection: todo_collection});
     this.contentRegion.show(todo_view);
+    $('body').on('click', '.js-save-button', function(e) {
+        self.vent.trigger('todo:save', e);
+    });
 });
 
 $(function() {

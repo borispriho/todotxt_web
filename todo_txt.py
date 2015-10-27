@@ -60,13 +60,13 @@ class TodoTxt(object):
 
     @staticmethod
     def serialize_line(line):
-        """Converting text line to representing dictioanary"""
+        """Converting text line to representing dictionary"""
         result = {'projects': [], 'contexts': [], 'done': False}
         line = line.strip()
         if line.startswith('x '):
             line = line[2:].strip()
             result['done'] = True
-        clean_line = ''
+        words = []
         for word in line.split(' '):
             if not word:
                 continue
@@ -76,13 +76,13 @@ class TodoTxt(object):
             if word.startswith('@'):
                 result['contexts'].append(word)
                 continue
-            clean_line += ' ' + word
-        result.update({'line': clean_line})
+            words.append(word)
+        result.update({'line': " ".join(words)})
         return result
 
     def serialize(self):
         """Return serialized todo
-        Method returns list of dictionaries which represent todolist
+        Method returns list of dictionaries which represent todo list
         """
         result = []
         for line in self:

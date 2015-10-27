@@ -82,6 +82,8 @@ class TestTodoTxt(unittest.TestCase):
         self.assertIn('@home', self.todo.serialize_line(line + ' @home')['contexts'])
         self.assertEqual(len(self.todo.serialize_line(line +
                                                       ' @home @work')['contexts']), 2)
+        self.assertTrue(self.todo.serialize_line(line + ' +project_1')['line'][0] != ' ',
+                        msg="First symbol in line shouldn't be <space>")
 
     def test_serialize(self):
         """Test serialize todo object"""

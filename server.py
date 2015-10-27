@@ -6,7 +6,7 @@ from tornado.web import HTTPError
 from tornado.ioloop import IOLoop
 from tornado.web import Application, url, RequestHandler, asynchronous
 from tornado.options import define, options
-from tornado.escape import json_encode
+from tornado.escape import json_encode, json_decode
 from tornado import gen
 from tornado.concurrent import run_on_executor
 from concurrent.futures import ThreadPoolExecutor
@@ -77,6 +77,12 @@ class TodoHandler(RequestHandler):
     def get(self):
         result_encoded = json_encode(self.todo.serialize())
         self.write(result_encoded)
+
+    def post(self):
+        todo_list = json_decode(self.request.body)
+        print todo_list
+        self.todo.unserialize(todo_list)
+        self.write('saved')
 
 def make_app():
     return Application(
