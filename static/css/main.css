@@ -1,3 +1,11 @@
+.js-add-button {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    margin-bottom: 80px;
+    margin-right: 20px;
+}
+
 .js-save-button {
     position: fixed;
     bottom: 0px;
