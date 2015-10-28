@@ -28,7 +28,7 @@ class TestTodoHandler(TestHandlerBase):
             todo_fh.write('The second task\n')
             todo_fh.write('Yet another task\n')
 
-    def TearDown(self):
+    def tearDown(self):
         if os.path.exists(options.todo_file):
             os.remove(options.todo_file)
 
