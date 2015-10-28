@@ -5,3 +5,6 @@ todotxt_web
 ===========
 
 Web implementation of todo.txt concept
+
+**Usage**:
+    *./server.py --config=default_config.py*
