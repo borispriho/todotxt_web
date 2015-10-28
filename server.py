@@ -2,18 +2,15 @@
 # -*- coding: utf-8 -*-
 import os
 
-from tornado.web import HTTPError
 from tornado.ioloop import IOLoop
-from tornado.web import Application, url, RequestHandler, asynchronous
+from tornado.web import Application, url, RequestHandler
 from tornado.options import define, options
 from tornado.escape import json_encode, json_decode
-from tornado import gen
-from tornado.concurrent import run_on_executor
 from concurrent.futures import ThreadPoolExecutor
+from functools import wraps
 
 MAX_WORKERS = 4
 
-from functools import wraps
 
 import todo_txt
 
