@@ -57,10 +57,17 @@ TodoTxtApp.TodoCompositeView = Backbone.Marionette.CompositeView.extend({
         TodoTxtApp.vent.on('todo:save', function(e) {
             self.saveTodo(e);
         });
+        TodoTxtApp.vent.on('todo:add', function(e) {
+            self.addTask(e);
+        });
     },
     saveTodo: function(e) {
         var self = this;
         self.collection.sync('create', self.collection);
+    },
+    addTask: function(e) {
+        var self = this;
+        console.log(self);
     }
 });
 
@@ -70,6 +77,9 @@ TodoTxtApp.addInitializer(function() {
     todo_collection.fetch();
     var todo_view = new TodoTxtApp.TodoCompositeView({collection: todo_collection});
     this.contentRegion.show(todo_view);
+    $('body').on('click', '.js-add-button', function(e) {
+        self.vent.trigger('todo:add', e);
+    });
     $('body').on('click', '.js-save-button', function(e) {
         self.vent.trigger('todo:save', e);
     });
