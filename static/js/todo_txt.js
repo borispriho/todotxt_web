@@ -1,13 +1,16 @@
 var TodoTxtApp = new Backbone.Marionette.Application();
 
 TodoTxtApp.addRegions({
-    contentRegion: '#content'
+    contentRegion: '#content',
+    editRegion: '#edit'
 });
 
 TodoTxtApp.TodoModel = Backbone.Model.extend({
     defaults: {
         line: '',
-        done: false
+        done: false,
+        projects: [],
+        contexts: []
     },
     toJSON: function() {
         var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
@@ -45,6 +48,23 @@ TodoTxtApp.TodoItemView = Backbone.Marionette.ItemView.extend({
     }
 });
 
+TodoTxtApp.TodoEditItemView = Backbone.Marionette.ItemView.extend({
+    template: '#todo-edit',
+    model: TodoTxtApp.TodoModel,
+    className: "todotxt__edit",
+    ui: {
+        edit_box: '.edit_box'
+    },
+    events: {
+        'click .js-save-item-button': "saveItem"
+    },
+    saveItem: function(e) {
+        this.model.set('line', this.ui.edit_box.val());
+        TodoTxtApp.vent.trigger('todo:new', this.model);
+        this.remove();
+    }
+});
+
 TodoTxtApp.TodoCompositeView = Backbone.Marionette.CompositeView.extend({
     template: '#todo-list',
     tagName: 'table',
@@ -60,14 +80,22 @@ TodoTxtApp.TodoCompositeView = Backbone.Marionette.CompositeView.extend({
         TodoTxtApp.vent.on('todo:add', function(e) {
             self.addTask(e);
         });
+        TodoTxtApp.vent.on('todo:new', function(model) {
+            self.collection.add(model);
+            self.saveTodo();
+        });
     },
     saveTodo: function(e) {
         var self = this;
         self.collection.sync('create', self.collection);
     },
-    addTask: function(e) {
+    addTask: function(e, model) {
         var self = this;
-        console.log(self);
+        if (!model) {
+            model = new TodoTxtApp.TodoModel();
+        }
+        var edit_view = new TodoTxtApp.TodoEditItemView({model: model});
+        TodoTxtApp.editRegion.show(edit_view);
     }
 });
 

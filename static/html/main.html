@@ -32,6 +32,8 @@
         <main class="mdl-layout__content">
             <div id="content" class="todotxt__grid mdl-grid">
             </div>
+            <div id="edit">
+            </div>
             <button class="js-add-button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
 -                <i class="material-icons">add</i>
             <button class="js-save-button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
@@ -56,6 +58,13 @@
             <span class="project"><% _.each(projects, function(project) {print(' ' + project)}); %></span>
             <span class="context"><% _.each(contexts, function(context) {print(' ' + context)}); %></span>
         </td>
+    </script>
+    <script id="todo-edit" type="text/template">
+        <textarea class="edit_box" rows="4" cols="50" placeholder="Please type todo">
+        </textarea>
+            <button class="js-save-item-button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                <i class="material-icons">save</i>
+            </button>
     </script>
 </body>
 </html>
