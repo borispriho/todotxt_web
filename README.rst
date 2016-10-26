@@ -4,7 +4,7 @@
 todotxt_web
 ===========
 
-Web implementation of todo.txt concept
+Web implementation of todo.txt conc ept
 
 **Usage**:
     *./server.py --config=default_config.py*
